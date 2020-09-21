@@ -3,9 +3,9 @@ package th.ac.ku.atm.model;
 public class Customer {
     private int id;
     private String name;
-    private int pin;
+    private String pin;
 
-    public Customer(int id, String name, int pin) {
+    public Customer(int id, String name, String pin) {
         this.id = id;
         this.name = name;
         this.pin = pin;
@@ -27,11 +27,11 @@ public class Customer {
         this.name = name;
     }
 
-    public int getPin() {
+    public String getPin() {
         return pin;
     }
 
-    public void setPin(int pin) {
+    public void setPin(String pin) {
         this.pin = pin;
     }
 }
