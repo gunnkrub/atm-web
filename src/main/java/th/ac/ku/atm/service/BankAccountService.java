@@ -53,6 +53,26 @@ public class BankAccountService {
         restTemplate.put(url, bankAccount);
     }
 
+    public void depositBankAccount(BankAccount bankAccount){
+        String url = "http://localhost:8091/api/bankaccount/" + bankAccount.getId();
+        double old_balance = getBankAccount(bankAccount.getId()).getBalance();
+        double new_balance = old_balance + bankAccount.getBalance();
+        bankAccount.setBalance(new_balance);
+        restTemplate.put(url, bankAccount);
+    }
+
+    public void withdrawBankAccount(BankAccount bankAccount){
+        String url = "http://localhost:8091/api/bankaccount/" + bankAccount.getId();
+        double old_balance = getBankAccount(bankAccount.getId()).getBalance();
+        double new_balance = old_balance - bankAccount.getBalance();
+        if (new_balance >= 0) {
+            bankAccount.setBalance(new_balance);
+        }else{
+            bankAccount.setBalance(old_balance);
+        }
+        restTemplate.put(url, bankAccount);
+    }
+
     public void deleteBankAccount(BankAccount bankAccount){
         String url = "http://localhost:8091/api/bankaccount/" + bankAccount.getId();
         restTemplate.delete(url, bankAccount);

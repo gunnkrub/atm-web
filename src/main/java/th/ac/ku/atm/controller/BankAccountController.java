@@ -38,11 +38,20 @@ public class BankAccountController {
 
     }
 
-    @PostMapping("/edit/{id}")
-    public String editAccount(@PathVariable int id,
+    @PostMapping(value = "/edit/{id}",params = "deposit")
+    public String depositAccount(@PathVariable int id,
                               @ModelAttribute BankAccount bankAccount,
                               Model model){
-        bankAccountService.editBankAccount(bankAccount);
+        bankAccountService.depositBankAccount(bankAccount);
+        model.addAttribute("bankaccounts", bankAccountService.getAccounts());
+        return "redirect:/bankaccount";
+    }
+
+    @PostMapping(value = "/edit/{id}",params = "withdraw")
+    public String withdrawAccount(@PathVariable int id,
+                              @ModelAttribute BankAccount bankAccount,
+                              Model model){
+        bankAccountService.withdrawBankAccount(bankAccount);
         model.addAttribute("bankaccounts", bankAccountService.getAccounts());
         return "redirect:/bankaccount";
     }
