@@ -40,6 +40,15 @@ public class Customer {
     public void setPin(String pin) {
         this.pin = pin;
     }
+
+    @java.lang.Override
+    public java.lang.String toString() {
+        return "Customer{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", pin='" + pin + '\'' +
+                '}';
+    }
 }
 
 
