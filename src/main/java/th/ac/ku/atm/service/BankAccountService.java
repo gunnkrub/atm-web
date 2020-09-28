@@ -28,11 +28,16 @@ public class BankAccountService {
     }
 
 
-    //public void createAccount(BankAccount account) {
-    //    accountList.add(account);
-    //}
+    public void createAccount(BankAccount bankAccount) {
+        String url = "http://localhost:8091/api/bankaccount";
+        restTemplate.postForObject(url, bankAccount, BankAccount.class);
+    }
 
-    //public List<BankAccount> getAccounts() {
-    //    return new ArrayList<>(this.accountList);
-    //}
+    public List<BankAccount> getAccounts() {
+        String url = "http://localhost:8091/api/bankaccount";
+        ResponseEntity<BankAccount[]> response =
+                restTemplate.getForEntity(url, BankAccount[].class);
+        BankAccount[] accounts = response.getBody();
+        return Arrays.asList(accounts);
+    }
 }
